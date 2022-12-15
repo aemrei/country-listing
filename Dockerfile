@@ -1,15 +1,26 @@
-FROM node:current-alpine
+FROM node:current-alpine AS build
 
-ENV NODE_ENV=production
-
-ENV PORT=3000
-
+# Create app directory
 WORKDIR /usr/src/app
 
-COPY package.json  yarn.lock ./
-
+# Install app dependencies using yarn
+COPY package.json yarn.lock ./
 RUN yarn install
 
-EXPOSE ${PORT}
+# Bundle app source
+COPY . .
 
-CMD ["yarn", "dev"]
+# Build app
+RUN yarn build
+
+# Production image
+FROM nginx:stable-alpine
+
+# Copy build from build stage
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Run nginx
+CMD ["nginx", "-g", "daemon off;"]
