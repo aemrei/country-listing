@@ -19,6 +19,9 @@ FROM nginx:stable-alpine
 # Copy build from build stage
 COPY --from=build /usr/src/app/build /usr/share/nginx/html
 
+RUN rm /etc/nginx/conf.d/default.conf
+COPY support/nginx.conf /etc/nginx/conf.d/default.conf
+
 # Expose port 80
 EXPOSE 80
 
