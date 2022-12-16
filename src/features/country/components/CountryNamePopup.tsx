@@ -9,7 +9,7 @@ interface CountryNamePopupProps {
 export const CountryNamePopup = ({ selected, onClose }: CountryNamePopupProps) => {
   const getLanguageName = (language: string) => {
     if (language === "eng") return "English";
-    return selected?.languages[language] || language;
+    return selected?.languages?.[language] || language;
   };
 
   return (

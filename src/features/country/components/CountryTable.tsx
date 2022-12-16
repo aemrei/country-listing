@@ -48,9 +48,9 @@ export const CountryTable = ({ countries, setSelectedCountry }: CountryTableProp
                   className="cursor-pointer text-sky-500"
                   onClick={() => setSelectedCountry(country)}
                 >
-                  {country.names.eng?.common}
+                  {country.names?.eng?.common}
                 </TableCell>
-                <TableCell>{country.capital.join(", ")}</TableCell>
+                <TableCell>{(country.capital || []).join(", ")}</TableCell>
                 <TableCell>
                   <Link
                     to={`/details/${country.cca3}`}

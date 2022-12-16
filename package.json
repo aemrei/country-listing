@@ -30,7 +30,7 @@
     "test:ci": "CI=true react-scripts test --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 src/",
+    "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 src/",
     "prepare": "husky install",
     "storybook": "start-storybook -p 4443 -c .storybook -s public",
     "build-storybook": "build-storybook -c .storybook -s public"

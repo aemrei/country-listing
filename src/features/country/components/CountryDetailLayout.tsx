@@ -33,16 +33,16 @@ export const CountryDetailLayout = ({ alphaCode }: CountryDetailLayoutProps) => 
           <tbody>
             <tr className="border-b bg-slate-800 border-slate-700 hover:bg-slate-600">
               <LabelCell>Common Name</LabelCell>
-              <ValueCell>{country.names.eng?.common}</ValueCell>
+              <ValueCell>{country.names?.eng?.common}</ValueCell>
             </tr>
             <tr className="border-b bg-slate-800 border-slate-700 hover:bg-slate-600">
               <LabelCell>Official Name</LabelCell>
-              <ValueCell>{country.names.eng?.official}</ValueCell>
+              <ValueCell>{country.names?.eng?.official}</ValueCell>
             </tr>
             <tr className="border-b bg-slate-800 border-slate-700 hover:bg-slate-600">
               <LabelCell>Currency</LabelCell>
               <ValueCell>
-                {Object.entries(country.currencies).map(([key, value]) => (
+                {Object.entries(country.currencies || {}).map(([key, value]) => (
                   <p key={key}>
                     {value.name} - {value.symbol}
                   </p>
@@ -51,7 +51,7 @@ export const CountryDetailLayout = ({ alphaCode }: CountryDetailLayoutProps) => 
             </tr>
             <tr className="border-b bg-slate-800 border-slate-700 hover:bg-slate-600">
               <LabelCell>Languages</LabelCell>
-              <ValueCell>{Object.values(country.languages).join(" | ")}</ValueCell>
+              <ValueCell>{Object.values(country.languages || {}).join(" | ")}</ValueCell>
             </tr>
             <tr className="border-b bg-slate-800 border-slate-700 hover:bg-slate-600">
               <LabelCell>Flag</LabelCell>
@@ -60,7 +60,7 @@ export const CountryDetailLayout = ({ alphaCode }: CountryDetailLayoutProps) => 
                   <img
                     src={flagUrl}
                     className="h-10 border border-slate-400 p-0.5 rounded-md"
-                    alt={country.names.eng?.common || ""}
+                    alt={country.names?.eng?.common || ""}
                   />
                 )}
               </ValueCell>
