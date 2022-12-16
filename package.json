@@ -29,6 +29,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings 0 src/",
     "prepare": "husky install",
     "storybook": "start-storybook -p 4443 -c .storybook -s public",
     "build-storybook": "build-storybook -c .storybook -s public"
@@ -90,6 +91,7 @@
     "webpack": "^5.75.0"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": "prettier --write --ignore-unknown",
+    "**/*.{js,jsx,ts,tsx}": "yarn lint"
   }
 }
